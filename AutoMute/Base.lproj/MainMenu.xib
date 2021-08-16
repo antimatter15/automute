@@ -31,7 +31,7 @@
                         <action selector="toggleStartOnLoginWithSender:" target="Voe-Tx-rLC" id="caD-vL-tod"/>
                     </connections>
                 </menuItem>
-                <menuItem title="Enabled" state="on" onStateImage="checkmark" catalog="system" offStateImage="square" id="Lri-E8-Ppm">
+                <menuItem title="Enabled" state="on" id="Lri-E8-Ppm">
                     <modifierMask key="keyEquivalentModifierMask"/>
                     <connections>
                         <action selector="toggleEnableWithSender:" target="Voe-Tx-rLC" id="mlB-YD-od8"/>
@@ -47,8 +47,4 @@
             <point key="canvasLocation" x="99" y="340"/>
         </menu>
     </objects>
-    <resources>
-        <image name="checkmark" catalog="system" width="14" height="13"/>
-        <image name="square" catalog="system" width="15" height="14"/>
-    </resources>
 </document>
