@@ -89,17 +89,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let isMuted = output.isMasterChannelMuted(scope: .output)!
         if(output.isRunningSomewhere){
             lastActive = Date()
-            appStatus?.title = "Active"
+            appStatus?.title = "Sound is currently playing"
         }else{
             if(isMuted){
-                appStatus?.title = "Muted"
+                appStatus?.title = "Audio is muted"
             }else{
                 appStatus?.title = "Muting in \(Int(autoMuteSeconds + lastActive.timeIntervalSinceNow)) seconds"
             }
         }
         if(lastActive.timeIntervalSinceNow < -autoMuteSeconds && !isMuted){
             output.setMute(true, channel: kAudioObjectPropertyElementMaster, scope: .output)
-            
         }
     }
     
