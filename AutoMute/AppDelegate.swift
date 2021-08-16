@@ -8,6 +8,8 @@
 import Cocoa
 import SimplyCoreAudio
 import CoreAudio
+import LaunchAtLogin
+
 
 @main
 class AppDelegate: NSObject, NSApplicationDelegate {
@@ -17,20 +19,59 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     
     var statusItem: NSStatusItem?
     var lastActive: Date = Date()
+    var observation: NSKeyValueObservation?
+
 
     @IBOutlet weak var menu: NSMenu?
     @IBOutlet weak var isEnabled: NSMenuItem?
+    @IBOutlet weak var startOnLogin: NSMenuItem?
     @IBOutlet weak var appStatus: NSMenuItem?
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
-         
         statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.variableLength)
-        statusItem?.button?.title = "KaneMute"
+        self.setStatusIcon()
         if let menu = menu {
             statusItem?.menu = menu
         }
+        
+    }
+    
+    func setStatusIcon(){
+        if(LaunchAtLogin.isEnabled){
+            startOnLogin?.state = NSControl.StateValue.on
+        }else{
+            startOnLogin?.state = NSControl.StateValue.off
+        }
+        
+        var sourceImage = NSApp.applicationIconImage!
+        
+        if(statusItem?.button?.effectiveAppearance.name.rawValue.lowercased().contains("dark") ?? false){
+            let filter = CIFilter(name: "CIColorInvert")
+            let data = sourceImage.tiffRepresentation!
+            let bitmap = NSBitmapImageRep(data: data)
+            let beginImage = CIImage(bitmapImageRep: bitmap!)
+
+            filter?.setValue(beginImage, forKey: kCIInputImageKey)
+            
+            let rep = NSCIImageRep(ciImage: filter!.outputImage!)
+            sourceImage = NSImage(size: rep.size)
+            sourceImage.addRepresentation(rep)
+        }
+        
+        let resizedLogo = NSImage(size: NSSize(width: 18, height: 18), flipped: false) { (dstRect) -> Bool in
+            sourceImage.draw(in: dstRect)
+                return true
+            }
+        
+        statusItem?.button?.image = resizedLogo
+    }
+    
+    @IBAction func toggleStartOnLogin(sender: NSMenuItem){
+        LaunchAtLogin.isEnabled = !LaunchAtLogin.isEnabled
+
+        setStatusIcon()
     }
     
     @IBAction func toggleEnable(sender: NSMenuItem){
@@ -68,8 +109,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         
         }
         checkAudioPlayback()
+        observation = statusItem?.button?.observe(\.effectiveAppearance) { (app, _) in
+            app.effectiveAppearance.performAsCurrentDrawingAppearance {
+                self.setStatusIcon()
+            }
+        }
     }
-
-
 }
 

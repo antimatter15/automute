@@ -11,6 +11,7 @@
 		0A77B80B26C9D88100BF8E8A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0A77B80A26C9D88100BF8E8A /* Assets.xcassets */; };
 		0A77B80E26C9D88100BF8E8A /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A77B80C26C9D88100BF8E8A /* MainMenu.xib */; };
 		0A77B81826C9D89E00BF8E8A /* SimplyCoreAudio in Frameworks */ = {isa = PBXBuildFile; productRef = 0A77B81726C9D89E00BF8E8A /* SimplyCoreAudio */; };
+		0AAB7C9726C9F8CD00DD339A /* LaunchAtLogin in Frameworks */ = {isa = PBXBuildFile; productRef = 0AAB7C9626C9F8CD00DD339A /* LaunchAtLogin */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AAB7C9726C9F8CD00DD339A /* LaunchAtLogin in Frameworks */,
 				0A77B81826C9D89E00BF8E8A /* SimplyCoreAudio in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -80,6 +82,7 @@
 			name = AutoMute;
 			packageProductDependencies = (
 				0A77B81726C9D89E00BF8E8A /* SimplyCoreAudio */,
+				0AAB7C9626C9F8CD00DD339A /* LaunchAtLogin */,
 			);
 			productName = AutoMute;
 			productReference = 0A77B80526C9D87E00BF8E8A /* AutoMute.app */;
@@ -110,6 +113,7 @@
 			mainGroup = 0A77B7FC26C9D87E00BF8E8A;
 			packageReferences = (
 				0A77B81626C9D89E00BF8E8A /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */,
+				0AAB7C9526C9F8CD00DD339A /* XCRemoteSwiftPackageReference "LaunchAtLogin" */,
 			);
 			productRefGroup = 0A77B80626C9D87E00BF8E8A /* Products */;
 			projectDirPath = "";
@@ -276,6 +280,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AutoMute/AutoMute.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VV9VCS7UWW;
@@ -285,6 +290,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eponymous.AutoMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -297,6 +304,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = AutoMute/AutoMute.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = VV9VCS7UWW;
@@ -306,6 +314,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
+				MACOSX_DEPLOYMENT_TARGET = 11.3;
+				MARKETING_VERSION = 0.2;
 				PRODUCT_BUNDLE_IDENTIFIER = com.eponymous.AutoMute;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -344,6 +354,14 @@
 				minimumVersion = 4.0.1;
 			};
 		};
+		0AAB7C9526C9F8CD00DD339A /* XCRemoteSwiftPackageReference "LaunchAtLogin" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/LaunchAtLogin";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -351,6 +369,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 0A77B81626C9D89E00BF8E8A /* XCRemoteSwiftPackageReference "SimplyCoreAudio" */;
 			productName = SimplyCoreAudio;
+		};
+		0AAB7C9626C9F8CD00DD339A /* LaunchAtLogin */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 0AAB7C9526C9F8CD00DD339A /* XCRemoteSwiftPackageReference "LaunchAtLogin" */;
+			productName = LaunchAtLogin;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
